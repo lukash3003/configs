@@ -1,0 +1,7 @@
+# Ignore everything in root (.config)
+/*
+
+# Files to not ignore
+!/.gitignore
+!/nvim/
+!/tmux/
