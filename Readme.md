@@ -1,3 +1,3 @@
 Currently managed configs:
-    - Neovim
-    - Tmux
+- Neovim
+- Tmux
