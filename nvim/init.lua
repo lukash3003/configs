@@ -13,8 +13,6 @@ set nowrap
 ]])
 
 
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
@@ -28,6 +26,10 @@ return require('packer').startup(function(use)
     }
     use { "ellisonleao/gruvbox.nvim" }
     use ( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
+    vim.o.background = "dark" -- or "light" for light mode
+    vim.cmd([[colorscheme gruvbox]])
 end)
+
 
 
