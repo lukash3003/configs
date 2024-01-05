@@ -127,4 +127,3 @@ function title() {
 	PS1="${PS1/$esearch/$@}"
 }
 
-. "$HOME/.cargo/env"
