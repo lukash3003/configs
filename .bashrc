@@ -127,3 +127,5 @@ function title() {
 	PS1="${PS1/$esearch/$@}"
 }
 
+tmux
+neofetch
