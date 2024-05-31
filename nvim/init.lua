@@ -12,14 +12,29 @@ set hlsearch
 set nowrap
 ]])
 
+
+
+
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.4', requires = { {'nvim-lua/plenary.nvim'} } }
-    use {"ellisonleao/gruvbox.nvim" }
-    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-end)
 
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+    {"nvim-lua/plenary.nvim"},
+    {"ellisonleao/gruvbox.nvim"},
+    {"kevinhwang91/promise-async"},
+    {"kevinhwang91/nvim-ufo"},
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}
+})
