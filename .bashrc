@@ -1,8 +1,3 @@
-#####################################
-# PUT THE FOLLOWING LINE INTO .bashrc
-# source ~/.config/.bashrc
-#####################################
-
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -119,6 +114,10 @@ fi
 alias vi='nvim'
 alias l='ls -l'
 alias ll='ls -la'
+alias nvimdiff='nvim -d'
+source /opt/Xilinx/Vivado/2022.2/.settings64-Vivado.sh
+export PATH=$PATH:/home/lhoffleit/.local/bin
+eval "$(zoxide init bash --cmd cd)"
 
 function title() {
 	prefix=${PS1%%\\a*}
@@ -127,5 +126,6 @@ function title() {
 	PS1="${PS1/$esearch/$@}"
 }
 
-tmux
-neofetch
+if [[ $TMUX = "" ]];  then
+    tmux
+fi
