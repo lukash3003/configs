@@ -13,11 +13,6 @@ set nowrap
 ]])
 
 
-
-
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -29,12 +24,27 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {"nvim-lua/plenary.nvim"},
     {"ellisonleao/gruvbox.nvim"},
     {"kevinhwang91/promise-async"},
     {"kevinhwang91/nvim-ufo"},
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = { 'nvim-lua/plenary.nvim' } },
-    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}
+    {'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = {'nvim-lua/plenary.nvim'}},
+    {"nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = {"c", "python", "bash", "lua", "verilog", "latex"},
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },  
+        })
+    end}
 })
+
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
