@@ -115,9 +115,12 @@ alias vi='nvim'
 alias l='ls -l'
 alias ll='ls -la'
 alias nvimdiff='nvim -d'
-source /opt/Xilinx/Vivado/2022.2/.settings64-Vivado.sh
+if [ -f /opt/Xilinx/Vivado/2022.2/.settings64-Vivado.sh ]; then
+    source /opt/Xilinx/Vivado/2022.2/.settings64-Vivado.sh
+fi
 export PATH=$PATH:/home/lhoffleit/.local/bin
 eval "$(zoxide init bash --cmd cd)"
+LANGUAGE=en_US
 
 function title() {
 	prefix=${PS1%%\\a*}
@@ -129,3 +132,5 @@ function title() {
 if [[ $TMUX = "" ]];  then
     tmux
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
