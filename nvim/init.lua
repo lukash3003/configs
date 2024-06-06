@@ -43,8 +43,17 @@ require("lazy").setup({
           highlight = { enable = true },
           indent = { enable = true },  
         })
-    end}
-})
+    end},
+    --- Uncomment the two plugins below if you want to manage the language servers from neovim
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
+    
+    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+    {'neovim/nvim-lspconfig'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/nvim-cmp'},
+    {'L3MON4D3/LuaSnip'},
+    })
 
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
