@@ -19,10 +19,11 @@ require('mason-lspconfig').setup({
 })
 
 --Autocompletion:
--- <C-y> confirm
+-- <C-h> confirm
 -- <C-k> up
 -- <C-j> down
 -- <C-n> bring up Autocompletion
+-- <C-l> slect first
 
 local cmp = require('cmp')
 
@@ -31,9 +32,12 @@ cmp.setup({
     {name = 'nvim_lsp'},
   },
   mapping = {
-    ['<C-y>'] = cmp.mapping.confirm({select = false}),
+    ['<C-h>'] = cmp.mapping.confirm({select = false}),
     ['<C-k>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
     ['<C-j>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+    ['<C-l>'] = cmp.mapping(function()
+        cmp.select_next_item({behavior = 'insert'})
+    end),
     ['<C-p>'] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_prev_item({behavior = 'insert'})
