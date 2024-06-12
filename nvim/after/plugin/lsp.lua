@@ -18,12 +18,6 @@ require('mason-lspconfig').setup({
   },
 })
 
---Autocompletion:
--- <C-h> confirm
--- <C-k> up
--- <C-j> down
--- <C-n> bring up Autocompletion
--- <C-l> slect first
 
 local cmp = require('cmp')
 
