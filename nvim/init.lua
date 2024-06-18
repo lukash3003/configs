@@ -6,11 +6,11 @@ set expandtab
 set smartindent
 set ma
 tnoremap <ESC> <C-\><C-n>
-
-set number
 set hlsearch
 set nowrap
 ]])
+
+vim.opt.relativenumber=true
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -32,6 +32,7 @@ require("lazy").setup({
     {"kevinhwang91/promise-async"},
     {"kevinhwang91/nvim-ufo"},
     {'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = {'nvim-lua/plenary.nvim'}},
+    {"lukas-reineke/indent-blankline.nvim", main="ibl", opts={}},
     {"nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function () 
@@ -65,3 +66,9 @@ vim.cmd([[
     autocmd BufWinEnter * silent! loadview
     augroup END
 ]])
+
+require("ibl").setup({
+    scope = {show_start=false, show_end=false}
+})
+
+vim.api.nvim_set_hl(0, "@ibl.scope.char.1", {fg="#b16286"})
