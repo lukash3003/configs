@@ -8,6 +8,7 @@ set ma
 tnoremap <ESC> <C-\><C-n>
 set hlsearch
 set nowrap
+setlocal spell spelllang=de_20
 ]])
 
 vim.opt.relativenumber=true
@@ -39,7 +40,7 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = {"c", "python", "bash", "lua", "verilog"},
+          ensure_installed = {"c", "python", "bash", "lua", "verilog", "latex"},
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },  
