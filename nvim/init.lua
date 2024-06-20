@@ -12,6 +12,7 @@ setlocal spell spelllang=de_20
 ]])
 
 vim.opt.relativenumber=true
+vim.opt.number=true
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
