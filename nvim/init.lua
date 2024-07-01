@@ -33,6 +33,7 @@ require("lazy").setup({
     {"ellisonleao/gruvbox.nvim"},
     {"kevinhwang91/promise-async"},
     {"kevinhwang91/nvim-ufo"},
+    {'nvim-lua/lsp-status.nvim'},
     {'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = {'nvim-lua/plenary.nvim'}},
     {"lukas-reineke/indent-blankline.nvim", main="ibl", opts={}},
     {"nvim-treesitter/nvim-treesitter",
@@ -74,3 +75,4 @@ require("ibl").setup({
 })
 
 vim.api.nvim_set_hl(0, "@ibl.scope.char.1", {fg="#b16286"})
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {noremap=true})

@@ -18,6 +18,8 @@ require('mason-lspconfig').setup({
   },
 })
 
+require ("lspconfig").verible.setup({})
+
 
 local cmp = require('cmp')
 
