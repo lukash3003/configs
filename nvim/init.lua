@@ -59,6 +59,19 @@ require("lazy").setup({
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
     {'chentoast/marks.nvim'},
+    {"luukvbaal/statuscol.nvim",
+      config = function()
+        local builtin = require("statuscol.builtin")
+        require("statuscol").setup({
+          relculright = true,
+          segments = {
+            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+            { text = { "%s" }, click = "v:lua.ScSa" },
+            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+          },
+        })
+      end,
+    },
     })
 
 vim.o.background = "dark" -- or "light" for light mode
