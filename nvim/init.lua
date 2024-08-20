@@ -39,25 +39,26 @@ require("lazy").setup({
     {'norcalli/nvim-colorizer.lua'},
     {"nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function () 
+    config = function ()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
           ensure_installed = {"c", "python", "bash", "lua", "verilog", "latex"},
           sync_install = false,
           highlight = { enable = true },
-          indent = { enable = true },  
+          indent = { enable = true },
         })
     end},
     --- Uncomment the two plugins below if you want to manage the language servers from neovim
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
-    
+
     {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
     {'neovim/nvim-lspconfig'},
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
+    {'chentoast/marks.nvim'},
     })
 
 vim.o.background = "dark" -- or "light" for light mode
@@ -78,3 +79,8 @@ require("ibl").setup({
 vim.api.nvim_set_hl(0, "@ibl.scope.char.1", {fg="#b16286"})
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {noremap=true})
 require("colorizer").setup()
+
+vim.api.nvim_create_autocmd({"BufWritePre"},{
+    pattern = {"*"},
+    command = [[%s/\s\+$//e]],
+})
