@@ -72,7 +72,7 @@ require("lazy").setup({
         })
       end,
     },
-    })
+})
 
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
@@ -97,3 +97,15 @@ vim.api.nvim_create_autocmd({"BufWritePre"},{
     pattern = {"*"},
     command = [[%s/\s\+$//e]],
 })
+
+vim.api.nvim_create_user_command("VirtualBlock", function ()
+    vim.opt.ve = "block"
+    print("Entering Virtual Block mode")
+end, {desc = "Set virtual block mode"})
+vim.keymap.set("n", "<leader>vb", "<cmd>VirtualBlock<CR>", {noremap=true})
+
+vim.api.nvim_create_user_command("VirtualNormal", function ()
+    vim.opt.ve = ""
+    print("Leaving Virtual Block mode")
+end, {desc = "Set virtual block mode"})
+vim.keymap.set("n", "<leader>vn", "<cmd>VirtualNormal<CR>", {noremap=true})
