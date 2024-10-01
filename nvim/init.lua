@@ -9,6 +9,7 @@ tnoremap <ESC> <C-\><C-n>
 set hlsearch
 set nowrap
 setlocal spell spelllang=de_20
+set termguicolors
 ]])
 
 vim.opt.relativenumber=true
@@ -30,7 +31,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {"nvim-lua/plenary.nvim"},
-    {"ellisonleao/gruvbox.nvim"},
+    { 'sainnhe/gruvbox-material'},
     {"kevinhwang91/promise-async"},
     {"kevinhwang91/nvim-ufo"},
     {'nvim-lua/lsp-status.nvim'},
@@ -52,7 +53,6 @@ require("lazy").setup({
     --- Uncomment the two plugins below if you want to manage the language servers from neovim
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
-
     {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
     {'neovim/nvim-lspconfig'},
     {'hrsh7th/cmp-nvim-lsp'},
@@ -74,8 +74,9 @@ require("lazy").setup({
     },
     })
 
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+vim.o.background = "dark"
+vim.g.gruvbox_material_enable_italic = true
+vim.cmd.colorscheme('gruvbox-material')
 
 vim.cmd([[
     augroup remember_folds
