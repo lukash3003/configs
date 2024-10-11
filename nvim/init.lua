@@ -57,8 +57,9 @@ require("lazy").setup({
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
+    {'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}},
     {'chentoast/marks.nvim'},
-    {'nvim-lua/lsp-status.nvim'},
+    {'arkav/lualine-lsp-progress'},
     {"luukvbaal/statuscol.nvim",
       config = function()
         local builtin = require("statuscol.builtin")
@@ -77,6 +78,14 @@ require("lazy").setup({
 vim.o.background = "dark"
 vim.g.gruvbox_material_enable_italic = true
 vim.cmd.colorscheme('gruvbox-material')
+
+require'lualine'.setup{
+	sections = {
+		lualine_c = {
+			'lsp_progress'
+		}
+	}
+}
 
 vim.cmd([[
     augroup remember_folds
