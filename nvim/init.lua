@@ -8,7 +8,6 @@ set ma
 tnoremap <ESC> <C-\><C-n>
 set hlsearch
 set nowrap
-setlocal spell spelllang=de_20
 set termguicolors
 ]])
 
@@ -44,7 +43,7 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = {"c", "python", "bash", "lua", "verilog", "latex"},
+          ensure_installed = {},
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },
@@ -59,6 +58,7 @@ require("lazy").setup({
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
     {'chentoast/marks.nvim'},
+    {'nvim-lua/lsp-status.nvim'},
     {"luukvbaal/statuscol.nvim",
       config = function()
         local builtin = require("statuscol.builtin")
@@ -81,8 +81,8 @@ vim.cmd.colorscheme('gruvbox-material')
 vim.cmd([[
     augroup remember_folds
     autocmd!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent! loadview
+    autocmd BufWinLeave ?* mkview
+    autocmd BufWinEnter ?* silent! loadview
     augroup END
 ]])
 
