@@ -1,19 +1,20 @@
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.ma = true
+vim.opt.hlsearch = true
+vim.opt.wrap = false
+vim.opt.termguicolors = true
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.spell = false
+
 vim.cmd([[
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smartindent
-set ma
 tnoremap <ESC> <C-\><C-n>
-set hlsearch
-set nowrap
-set termguicolors
+setlocal spell spelllang=de_20
 ]])
-
-vim.opt.relativenumber=true
-vim.opt.number=true
-
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -43,13 +44,12 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = {},
+          ensure_installed = {'python', 'c', 'matlab'},
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },
         })
     end},
-    --- Uncomment the two plugins below if you want to manage the language servers from neovim
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
     {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
@@ -60,48 +60,11 @@ require("lazy").setup({
     {'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}},
     {'chentoast/marks.nvim'},
     {'arkav/lualine-lsp-progress'},
-    {"luukvbaal/statuscol.nvim",
-      config = function()
-        local builtin = require("statuscol.builtin")
-        require("statuscol").setup({
-          relculright = true,
-          segments = {
-            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-            { text = { "%s" }, click = "v:lua.ScSa" },
-            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-          },
-        })
-      end,
-    },
 })
 
 vim.o.background = "dark"
 vim.g.gruvbox_material_enable_italic = true
 vim.cmd.colorscheme('gruvbox-material')
-
-require'lualine'.setup{
-	sections = {
-		lualine_c = {
-			'lsp_progress'
-		}
-	}
-}
-
-vim.cmd([[
-    augroup remember_folds
-    autocmd!
-    autocmd BufWinLeave ?* mkview
-    autocmd BufWinEnter ?* silent! loadview
-    augroup END
-]])
-
-require("ibl").setup({
-    scope = {show_start=false, show_end=false}
-})
-
-vim.api.nvim_set_hl(0, "@ibl.scope.char.1", {fg="#b16286"})
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {noremap=true})
-require("colorizer").setup()
 
 vim.api.nvim_create_autocmd({"BufWritePre"},{
     pattern = {"*"},

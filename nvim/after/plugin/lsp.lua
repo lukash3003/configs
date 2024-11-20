@@ -1,13 +1,9 @@
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
--- to learn how to use mason.nvim
--- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
 ensure_installed = {},
@@ -34,6 +30,9 @@ require ("lspconfig").verible.setup({})
 local cmp = require('cmp')
 
 cmp.setup({
+  completion = {
+        autocomplete= { cmp.TriggerEvent.TextChanged },
+  },
   sources = {
     {name = 'nvim_lsp'},
   },
@@ -73,4 +72,29 @@ vim.api.nvim_create_user_command("DiagnosticToggle", function()
 	}
 end, { desc = "toggle diagnostic" })
 
+local path = "/home/lukas/.config/nvim/spell/de.utf-8.add"
+local words = {}
 
+local file = io.open(path, "r")
+if file then
+  for word in file:lines() do
+    table.insert(words, word)
+  end
+  file:close()
+end
+
+require('lspconfig').ltex.setup({
+  cmd = { "ltex-ls" },
+  filetypes = { "markdown", "tex", "txt" },
+  settings = {
+    ltex = {
+      language = "de",
+        dictionary = {
+            ["de-DE"] = words,
+        },
+         disabledRules = {
+        ['de-DE'] = { '' },
+      },
+    },
+  },
+})
