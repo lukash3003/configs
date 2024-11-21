@@ -1,3 +1,8 @@
+vim.cmd([[
+tnoremap <ESC> <C-\><C-n>
+setlocal spell spelllang=de_20
+]])
+
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -9,12 +14,8 @@ vim.opt.wrap = false
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
 vim.opt.number = true
+vim.opt.spelllang="de_20"
 vim.opt.spell = false
-
-vim.cmd([[
-tnoremap <ESC> <C-\><C-n>
-setlocal spell spelllang=de_20
-]])
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
