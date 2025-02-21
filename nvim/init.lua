@@ -1,8 +1,9 @@
 vim.cmd([[
 tnoremap <ESC> <C-\><C-n>
-setlocal spell spelllang=de_20
+inoremap <S-Tab> <C-V><Tab>
 ]])
 
+--setlocal spell spelllang=de_20
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -14,8 +15,8 @@ vim.opt.wrap = false
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.spelllang="de_20"
-vim.opt.spell = false
+--vim.opt.spelllang="de_20"
+--vim.opt.spell = false
 
 vim.keymap.set("", "<up>", "<nop>", { noremap = true })
 vim.keymap.set("", "<down>", "<nop>", { noremap = true })
@@ -43,6 +44,7 @@ require("lazy").setup({
     {"kevinhwang91/promise-async"},
     {"kevinhwang91/nvim-ufo"},
     {'nvim-lua/lsp-status.nvim'},
+    {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     {'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = {'nvim-lua/plenary.nvim'}},
     {"lukas-reineke/indent-blankline.nvim", main="ibl", opts={}},
     {'norcalli/nvim-colorizer.lua'},
@@ -52,7 +54,7 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = {'python', 'c', 'cpp', 'matlab'},
+          ensure_installed = {'python', 'c', 'matlab', 'markdown'},
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },
@@ -74,10 +76,11 @@ vim.o.background = "dark"
 vim.g.gruvbox_material_enable_italic = true
 vim.cmd.colorscheme('gruvbox-material')
 
-vim.api.nvim_create_autocmd({"BufWritePre"},{
-    pattern = {"*"},
-    command = [[%s/\s\+$//e]],
-})
+--vim.api.nvim_create_autocmd({"BufWritePre"},{
+--    pattern = {"*"},
+--    command = [[%s/\s\+$//e]],
+--})
+--
 
 vim.api.nvim_create_user_command("VirtualBlock", function ()
     vim.opt.ve = "block"
