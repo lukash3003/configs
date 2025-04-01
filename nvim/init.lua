@@ -17,6 +17,13 @@ vim.opt.number = true
 vim.opt.spelllang="de_20"
 vim.opt.spell = false
 
+vim.keymap.set("", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("", "<down>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
+
+vim.opt.mouse = ""
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -45,7 +52,7 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = {'python', 'c', 'matlab'},
+          ensure_installed = {'python', 'c', 'cpp', 'matlab'},
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },
@@ -83,3 +90,4 @@ vim.api.nvim_create_user_command("VirtualNormal", function ()
     print("Leaving Virtual Block mode")
 end, {desc = "Set virtual block mode"})
 vim.keymap.set("n", "<leader>vn", "<cmd>VirtualNormal<CR>", {noremap=true})
+vim.keymap.set("v", '"*y', '"+y', {noremap=true})
