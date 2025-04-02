@@ -98,3 +98,20 @@ require('lspconfig').ltex.setup({
     },
   },
 })
+
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(event)
+    local opts = { buffer = event.buf }
+--    vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+    --vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+    --vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
+    --vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)
+    --vim.keymap.set('n', 'go', function() vim.lsp.buf.type_definition() end, opts)
+    --vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
+    --vim.keymap.set('n', 'gs', function() vim.lsp.buf.signature_help() end, opts)
+    --vim.keymap.set('n', '<Leader>cr', function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set({ 'n', 'v' }, '<Leader>cf', function() vim.lsp.buf.format() end, opts)
+    vim.keymap.set('n', '<Leader>ca', function() vim.lsp.buf.code_action() end, opts)
+  end,
+})
