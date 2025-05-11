@@ -5,4 +5,6 @@
 !/.gitignore
 !/nvim/
 !/tmux/
+!/hyprland/
 !/kitty*
+
