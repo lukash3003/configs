@@ -70,6 +70,7 @@ require("lazy").setup({
     {'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}},
     {'chentoast/marks.nvim'},
     {'arkav/lualine-lsp-progress'},
+    {"lervag/vimtex", lazy = false, init = function() vim.g.vimtex_view_method = "zathura" vim.g.vimtex_quickfix_open_on_warning = 0 end }
 })
 
 vim.o.background = "dark"
@@ -81,7 +82,6 @@ vim.cmd.colorscheme('gruvbox-material')
 --    command = [[%s/\s\+$//e]],
 --})
 --
-
 vim.api.nvim_create_user_command("VirtualBlock", function ()
     vim.opt.ve = "block"
     print("Entering Virtual Block mode")
@@ -92,5 +92,6 @@ vim.api.nvim_create_user_command("VirtualNormal", function ()
     vim.opt.ve = ""
     print("Leaving Virtual Block mode")
 end, {desc = "Set virtual block mode"})
+
 vim.keymap.set("n", "<leader>vn", "<cmd>VirtualNormal<CR>", {noremap=true})
 vim.keymap.set("v", '"*y', '"+y', {noremap=true})
