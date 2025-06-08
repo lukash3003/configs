@@ -3,6 +3,7 @@
 
 # Files to not ignore
 !/.gitignore
+!/.zshrc
 !/nvim/
 !/tmux/
 !/hyprland/
