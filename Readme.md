@@ -1,3 +1,5 @@
+# This branch is for my work-config, to run in a virtualbox
+
 Currently managed configs:
 - Neovim
 - Tmux
